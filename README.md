@@ -484,3 +484,15 @@ K:D
 |: (d/B/) | AFD DFA | B2 d F2 A | AFD DEF | GFG EFG | AFD DFA | B2 d F2 A | Bdd F2 E | FDD D2 :: 
 fed dB/c/d | efe efg | fed daa | agf eag | fed B2 d | A2 d F2 A | Bdd F2 E | FDD D2 :|
 ```
+
+## BibTeX
+```
+@misc{wu2024language,
+      title={Beyond Language Models: Byte Models are Digital World Simulators}, 
+      author={Shangda Wu and Xu Tan and Zili Wang and Rui Wang and Xiaobing Li and Maosong Sun},
+      year={2024},
+      eprint={2402.19155},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG}
+}
+```
