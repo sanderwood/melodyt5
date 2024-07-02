@@ -295,7 +295,7 @@ K:G
 z6 |"Bm" z6 |"Em" z6 |"C" z3"D7" z3 |"Em" z3"Am" z3 |"D7" z6 |"G" z4 :|
 ```
 ```
-%%input
+%%output
 X:0
 E:5
 L:1/8
