@@ -1,0 +1,36 @@
+X:1
+S:3
+B:1
+E:1
+B:8
+E:0
+E:4
+B:9
+L:1/8
+M:4/4
+K:C
+e/d/ |: cE (3EEE EGAc | GE (3EEE G2 ed | cE (3EEE GEAc | GECE D2 ed | cE (3EEE GEAc | 
+GE (3EEE G2 ed | cded cBcA | GECE D2 ed || c2 ec gcec | (3ccc ec geed | c2 ec gcec | 
+(3ddd ed d2 ed | c2 ec gcec | (3ccc ec gede | abag efed |1 eaag e2 ed :|2 eaag e2 ed ||
+
+X:2
+S:1
+B:9
+L:1/8
+Q:1/4=120
+M:6/8
+K:F
+c/0c/0 | cBA BAG | F3 ccc | cBA BAG | F3 CDE | F2 F F2 F | F3 c3 | cBA BAG | F3 x3 |]
+
+X:3
+S:2
+B:9
+E:5
+B:9
+L:1/8
+Q:1/4=120
+M:6/8
+K:A
+"^Reel." e/d/ | cBA EFA | def ecA | Bcd ecA | BBB Bed | cBA EFA | def ecA | Bcd eaf | 
+ecA A2 :: (d/e/) | cAA eAA | fAA eAA | dBB fBB | bBB fed | cAA eAA | fAA eAA | Bcd eaf | ecA A2 :|
+
