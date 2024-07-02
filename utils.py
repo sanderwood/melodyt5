@@ -271,7 +271,7 @@ class MelodyT5(PreTrainedModel):
         generated_patch = []
         random.seed(seed)
 
-        if task in ["harmonization", "segmentation"]:
+        if task in ["harmonization", "segmentation"] and decoder_patches.shape[1] > 1:
             if task == "harmonization":
                 special_token = ord('"')
             else:
@@ -295,7 +295,7 @@ class MelodyT5(PreTrainedModel):
                 generated_patch.append(token)
                 break
             else:
-                if task in ["harmonization", "segmentation"]:
+                if task in ["harmonization", "segmentation"] and decoder_patches.shape[1] > 1:
                     reference_token = reference_patch[reference_idx].item()
                     reference_idx += 1
                     n_special_tokens = sum([1 for t in tokens if t == special_token])

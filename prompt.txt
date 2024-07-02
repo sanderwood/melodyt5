@@ -1,1 +1,13 @@
-%%generation
+%%input
+%%variation
+L:1/8
+M:6/8
+K:D
+|: AFD DFA | Add B2 A | ABA F3 | GFG EFG | AFD DFA | Add B2 A | ABA F2 E | FDD D3 :: fdd ede |
+fdd d2 g | fdd def | gfg e2 g | fed B2 A | AdF A3 | ABA F2 E | FDD D3 :|
+%%output
+E:8
+L:1/8
+M:6/8
+K:D
+|: B |

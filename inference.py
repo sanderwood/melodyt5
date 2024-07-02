@@ -76,7 +76,7 @@ def generate_abc(args):
         if prompt=="":
             tune = "X:"+str(i+1) + "\n"
         else:
-            tune = "X:"+str(i+1) + "\n" + prompt.strip() + "\n"
+            tune = "X:"+str(i+1) + "\n" + prompt.strip()
         lines = re.split(r'(\n)', tune)
         tune = ""
         skip = False
