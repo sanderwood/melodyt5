@@ -49,9 +49,10 @@ To set up the MelodyT5 environment and install the necessary dependencies, follo
 ## Usage
 
 - `config.py`: Configuration settings for training and inference.
-- `generate.py`: Perform inference tasks (e.g., generation and conversion) using pre-trained models.
-- `train-cls.py`: Training script for classification models.
-- `train-gen.py`: Training script for generative models.
+- `inference.py`: Perform inference tasks (e.g., generation and harmonization) using trained models.
+- `prompt.txt`: Text file containing the prompt to specify a task and its input for the model.
+- `random_model.py`: Script for creating random weights to initialize the model when using MelodyT5's patch-level encoder and decoder with shared weights.
+- `train.py`: Script for training the MelodyT5 model.
 - `utils.py`: Utility functions supporting model operations and data processing.
   
 ### Setting Up Inference Parameters
