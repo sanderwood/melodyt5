@@ -1,5 +1,5 @@
 # MelodyT5: A Unified Score-to-Score Transformer for Symbolic Music Processing [ISMIR 2024]
-This repository contains the code for the MelodyT5 model as described in the paper [MelodyT5: A Unified Score-to-Score Transformer for Symbolic Music Processing](https://arxiv.org/abs/2402.19155).
+This repository contains the code for the MelodyT5 model as described in the paper [MelodyT5: A Unified Score-to-Score Transformer for Symbolic Music Processing](https://arxiv.org/abs/2407.02277).
 
 MelodyT5 is an unified framework for symbolic music processing, using an encoder-decoder architecture to handle multiple melody-centric tasks, such as generation, harmonization, and segmentation, by treating them as score-to-score transformations. Pre-trained on [MelodyHub](https://huggingface.co/datasets/sander-wood/melodyhub), a large dataset of melodies in ABC notation, it demonstrates the effectiveness of multi-task transfer learning in symbolic music processing.
 
@@ -7,6 +7,18 @@ MelodyT5 is an unified framework for symbolic music processing, using an encoder
 In the domain of symbolic music research, the progress of developing scalable systems has been notably hindered by the scarcity of available training data and the demand for models tailored to specific tasks. To address these issues, we propose MelodyT5, a novel unified framework that leverages an encoder-decoder architecture tailored for symbolic music processing in ABC notation. This framework challenges the conventional task-specific approach, considering various symbolic music tasks as score-to-score transformations. Consequently, it integrates seven melody-centric tasks, from generation to harmonization and segmentation, within a single model. Pre-trained on MelodyHub, a newly curated collection featuring over 261K unique melodies encoded in ABC notation and encompassing more than one million task instances, MelodyT5 demonstrates superior performance in symbolic music processing via multi-task transfer learning. Our findings highlight the efficacy of multi-task transfer learning in symbolic music processing, particularly for data-scarce tasks, challenging the prevailing task-specific paradigms and offering a comprehensive dataset and framework for future explorations in this domain.
 
 We provide the weights of MelodyT5 on [Hugging Face](https://huggingface.co/sander-wood/melodyt5/blob/main/weights.pth), which are based on pre-training with over one million task instances encompassing seven melody-centric tasks. This extensive pre-training allows MelodyT5 to excel in symbolic music processing scenarios, even when data is limited.
+
+## ABC Notation
+
+ABC notation is an ASCII-based plain text musical notation system that is commonly used for transcribing traditional music and sharing sheet music online. It provides a simple and concise way to represent musical elements such as notes, rhythms, chords, and more.
+
+For those looking to interact with ABC notation in various ways, there are several tools available:
+
+1. **[Online ABC Player](https://abc.rectanglered.com/):** This web-based tool allows you to input ABC notation and hear the corresponding audio playback. By pasting your ABC code into the player, you can instantly listen to the tune as it would sound when played.
+
+2. **[ABC Sheet Music Editor - EasyABC](https://easyabc.sourceforge.net/):** EasyABC is a user-friendly software application designed for creating, editing, and formatting ABC notation. Its graphical interface enables you to input your ABC code, preview the sheet music, and make adjustments as necessary.
+
+To learn more about ABC notaton, please see [ABC Examples](https://abcnotation.com/examples) and [ABC Strandard](https://abcnotation.com/wiki/abc:standard).
 
 ## Installation
 
