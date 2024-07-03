@@ -498,14 +498,15 @@ K:D
 fed dB/c/d | efe efg | fed daa | agf eag | fed B2 d | A2 d F2 A | Bdd F2 E | FDD D2 :|
 ```
 
-## BibTeX
+## BibTeX Citation
 ```
-@misc{wu2024language,
-      title={Beyond Language Models: Byte Models are Digital World Simulators}, 
-      author={Shangda Wu and Xu Tan and Zili Wang and Rui Wang and Xiaobing Li and Maosong Sun},
+@misc{wu2024melodyt5unifiedscoretoscoretransformer,
+      title={MelodyT5: A Unified Score-to-Score Transformer for Symbolic Music Processing}, 
+      author={Shangda Wu and Yashan Wang and Xiaobing Li and Feng Yu and Maosong Sun},
       year={2024},
-      eprint={2402.19155},
+      eprint={2407.02277},
       archivePrefix={arXiv},
-      primaryClass={cs.LG}
+      primaryClass={cs.SD},
+      url={https://arxiv.org/abs/2407.02277}, 
 }
 ```
