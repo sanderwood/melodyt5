@@ -92,7 +92,12 @@ class PatchLevelEnDecoder(PreTrainedModel):
         self.patch_embedding = torch.nn.Linear(PATCH_SIZE * 128, config.n_embd)
         torch.nn.init.normal_(self.patch_embedding.weight, std=0.02)
         if SHARE_WEIGHTS:
-            self.base = EncoderDecoderModel.from_encoder_decoder_pretrained("random_model", "random_model", tie_encoder_decoder=True)
+            try:
+                self.base = EncoderDecoderModel.from_encoder_decoder_pretrained("random_model", "random_model", tie_encoder_decoder=True)
+            except Exception as e:
+                print("Error loading 'random_model':", e)
+                print("Please run 'random_model.py' to create randomly initialized weights.")
+                raise
         else:
             config = EncoderDecoderConfig.from_encoder_decoder_configs(config, config)
             self.config = config
