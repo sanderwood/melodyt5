@@ -42,7 +42,12 @@ To set up the MelodyT5 environment and install the necessary dependencies, follo
    ```bash
    pip install torch==1.13.1+cu116 torchvision==0.14.1+cu116 torchaudio==0.13.1 --extra-index-url https://download.pytorch.org/whl/cu116
    ```
-4. **Download Pre-trained MelodyT5 Weights (Optional)**
+   
+4. **Create Random Weights (Optional)**
+
+   If `SHARE_WEIGHTS = True` in `config.py`, run `random_model.py` to generate random weights for initializing the model with shared weights.
+   
+5. **Download Pre-trained MelodyT5 Weights (Optional)**
    
    For those interested in starting with pre-trained models, MelodyT5 weights are available on [Hugging Face](https://huggingface.co/sander-wood/melodyt5/blob/main/weights.pth).
 
@@ -73,49 +78,59 @@ These parameters control how the model generates melodies based on the input pro
 
 To perform inference tasks using MelodyT5, follow these steps:
 
-1. **Create Random Weights**
-   - Run `random_model.py` to generate random weights for initializing the model.
-
-2. **Prepare Your Prompt**
+1. **Prepare Your Prompt**
    - Edit `prompt.txt` to specify the task and input for the model. Each line in `prompt.txt` should contain a single prompt.
 
-3. **Execute Inference**
+2. **Execute Inference**
    - Run the following command to execute the inference script:
      ```bash
      python inference.py -num_tunes 3 -max_patch 128 -top_p 0.8 -top_k 8 -temperature 2.6 -seed <seed_value> -show_control_code True
      ```
      Replace `<seed_value>` with your chosen seed value or leave it as `None` for a random seed.
-   - The script will generate melodies based on the prompts specified in `prompt.txt` using the configured parameters.
+   - The script will generate melodies based on the prompts specified in `prompt.txt` using the configured parameters and save the results in the `output_tunes` folder.
 
 ## How to Use
+
 Follow these steps to effectively utilize MelodyT5 for symbolic music processing:
 
-1. Prepare Your Data
-   
-   Ensure your dataset follows the format and style of MelodyHub, which uses ABC notation for uniform representation of melodies. If not using MelodyHub data, adapt your dataset to match this style.
+1. **Prepare XML Data**
 
-2. Configure Your Model
-   
-   Adjust model hyperparameters, training parameters, and file paths in the config.py file.
+   Ensure your data is in single-track XML format, which can be `.xml`, `.musicxml`, or `.mxl` files.
 
-3. Create Random Weights
+2. **Convert to Standard Format**
 
-   If `SHARE_WEIGHTS = True` in `config.py`, run `random_model.py` to generate random weights for initializing the model with shared weights.
+   - Place the folder containing your XML data in the `xml2abc` directory.
+   - Navigate to the `xml2abc` directory.
+   - Run the following command to convert your XML files into standard ABC notation format:
+     
+     ```bash
+     python batch_xml2abc.py path_to_xml_directory
+     ```
+
+   - Replace `path_to_xml_directory` with the directory containing your XML files.
+
+3. **Design Input-Output Pairs**
+
+   After conversion, design input-output pairs based on your specific task requirements. You can refer to the data formats used in [MelodyHub](https://huggingface.co/datasets/sander-wood/melodyhub) for guidance.
    
-4. Train the Model
+4. **Configure Your Model**
    
-   Run the train.py script to train MelodyT5. Use the following command, adjusting for your specific setup:
+   Adjust model hyperparameters, training parameters, and file paths in the `config.py` file as you see fit.
+
+5. **Train the Model**
+   
+   Run the `train.py` script to train MelodyT5. Use the following command, adjusting for your specific setup:
    
    ```
    python -m torch.distributed.launch --nproc_per_node=8 --use_env train.py
    ```
-   This command utilizes distributed training across multiple GPUs (modify --nproc_per_node as needed).
+   This command utilizes distributed training across multiple GPUs (modify `--nproc_per_node` as needed).
 
-5. Run Inference
+6. **Run Inference**
    
    To perform inference tasks such as melody generation or harmonization, execute `inference.py`. The script reads prompts from `prompt.txt` to specify the task and input for the model. Customize prompts in `prompt.txt` to define different tasks and inputs for MelodyT5. Refer to the examples below for guidance on setting up prompts.
 
-   Ensure the encoder input is complete, while the output (decoder input) is optional. If you need the model to continue a given output, use `%%input` and `%%output` to mark the beginning of each section. Additionally, the output must not contain incomplete bars. Here is an example prompt:
+   Ensure the input (encoder input) is complete, while the output (decoder input) is optional. If you need the model to continue a given output, use `%%input` and `%%output` to mark the beginning of each section. Additionally, the output must not contain incomplete bars. Here is an example prompt:
 
    ```
    %%input
@@ -132,7 +147,7 @@ Follow these steps to effectively utilize MelodyT5 for symbolic music processing
    K:D
    |: B |
    ```
-
+   
 ## Inference Examples
 Below are the MelodyT5 results on seven MelodyHub tasks, using random samples from the validation set. Three independent outputs were generated without cherry-picking. Each `X:0` output corresponds to the original input for that task and is not generated by the model, while `X:1`, `X:2`, and `X:3` are generated outputs.
 
