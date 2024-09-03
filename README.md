@@ -6,7 +6,7 @@ This repository contains the code for the MelodyT5 model as described in the pap
 
 MelodyT5 is an unified framework for symbolic music processing, using an encoder-decoder architecture to handle multiple melody-centric tasks, such as generation, harmonization, and segmentation, by treating them as score-to-score transformations. Pre-trained on [MelodyHub](https://huggingface.co/datasets/sander-wood/melodyhub), a large dataset of melodies in ABC notation, it demonstrates the effectiveness of multi-task transfer learning in symbolic music processing.
 
-We provide the weights of MelodyT5 on [Hugging Face](https://huggingface.co/sander-wood/melodyt5/blob/main/weights.pth), which are based on pre-training with over one million task instances encompassing seven melody-centric tasks. This extensive pre-training allows MelodyT5 to excel in symbolic music processing scenarios, even when data is limited.
+We provide the weights of MelodyT5 on [Hugging Face](https://huggingface.co/sander-wood/melodyt5/blob/main/weights.pth), which are based on pre-training with over one million task instances encompassing seven melody-centric tasks.
 
 ## ABC Notation
 
