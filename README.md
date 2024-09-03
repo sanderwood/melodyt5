@@ -1,10 +1,10 @@
 # MelodyT5: A Unified Score-to-Score Transformer for Symbolic Music Processing [ISMIR 2024]
+
 This repository contains the code for the MelodyT5 model as described in the paper [MelodyT5: A Unified Score-to-Score Transformer for Symbolic Music Processing](https://arxiv.org/abs/2407.02277).
 
-MelodyT5 is an unified framework for symbolic music processing, using an encoder-decoder architecture to handle multiple melody-centric tasks, such as generation, harmonization, and segmentation, by treating them as score-to-score transformations. Pre-trained on [MelodyHub](https://huggingface.co/datasets/sander-wood/melodyhub), a large dataset of melodies in ABC notation, it demonstrates the effectiveness of multi-task transfer learning in symbolic music processing.
-
 ## Model Description
-In the domain of symbolic music research, the progress of developing scalable systems has been notably hindered by the scarcity of available training data and the demand for models tailored to specific tasks. To address these issues, we propose MelodyT5, a novel unified framework that leverages an encoder-decoder architecture tailored for symbolic music processing in ABC notation. This framework challenges the conventional task-specific approach, considering various symbolic music tasks as score-to-score transformations. Consequently, it integrates seven melody-centric tasks, from generation to harmonization and segmentation, within a single model. Pre-trained on MelodyHub, a newly curated collection featuring over 261K unique melodies encoded in ABC notation and encompassing more than one million task instances, MelodyT5 demonstrates superior performance in symbolic music processing via multi-task transfer learning. Our findings highlight the efficacy of multi-task transfer learning in symbolic music processing, particularly for data-scarce tasks, challenging the prevailing task-specific paradigms and offering a comprehensive dataset and framework for future explorations in this domain.
+
+MelodyT5 is an unified framework for symbolic music processing, using an encoder-decoder architecture to handle multiple melody-centric tasks, such as generation, harmonization, and segmentation, by treating them as score-to-score transformations. Pre-trained on [MelodyHub](https://huggingface.co/datasets/sander-wood/melodyhub), a large dataset of melodies in ABC notation, it demonstrates the effectiveness of multi-task transfer learning in symbolic music processing.
 
 We provide the weights of MelodyT5 on [Hugging Face](https://huggingface.co/sander-wood/melodyt5/blob/main/weights.pth), which are based on pre-training with over one million task instances encompassing seven melody-centric tasks. This extensive pre-training allows MelodyT5 to excel in symbolic music processing scenarios, even when data is limited.
 
@@ -44,14 +44,14 @@ To set up the MelodyT5 environment and install the necessary dependencies, follo
    ```
 4. **Download Pre-trained MelodyT5 Weights (Optional)**
    
-   For those interested in starting with pre-trained models, MelodyT5 weights are available on [Hugging Face](https://huggingface.co/sander-wood/melodyt5/blob/main/weights.pth). This step is optional but recommended for users looking to leverage the model's capabilities without training from scratch.
+   For those interested in starting with pre-trained models, MelodyT5 weights are available on [Hugging Face](https://huggingface.co/sander-wood/melodyt5/blob/main/weights.pth).
 
 ## Usage
 
 - `config.py`: Configuration settings for training and inference.
 - `inference.py`: Perform inference tasks (e.g., generation and harmonization) using trained models.
 - `prompt.txt`: Text file containing the prompt to specify a task and its input for the model.
-- `random_model.py`: Script for creating random weights to initialize the model when using MelodyT5's patch-level encoder and decoder with shared weights.
+- `random_model.py`: Use this script to initialize the model with random weights when `SHARE_WEIGHTS = TRUE` in `config.py` (default setting).
 - `train.py`: Script for training the MelodyT5 model.
 - `utils.py`: Utility functions supporting model operations and data processing.
   
@@ -73,29 +73,37 @@ These parameters control how the model generates melodies based on the input pro
 
 To perform inference tasks using MelodyT5, follow these steps:
 
-1. **Prepare Your Prompt**
+1. **Create Random Weights**
+   - Run `random_model.py` to generate random weights for initializing the model.
+
+2. **Prepare Your Prompt**
    - Edit `prompt.txt` to specify the task and input for the model. Each line in `prompt.txt` should contain a single prompt.
 
-2. **Execute Inference**
+3. **Execute Inference**
    - Run the following command to execute the inference script:
      ```bash
      python inference.py -num_tunes 3 -max_patch 128 -top_p 0.8 -top_k 8 -temperature 2.6 -seed <seed_value> -show_control_code True
      ```
      Replace `<seed_value>` with your chosen seed value or leave it as `None` for a random seed.
-
-3. **Interpreting the Output**
    - The script will generate melodies based on the prompts specified in `prompt.txt` using the configured parameters.
 
 ## How to Use
 Follow these steps to effectively utilize MelodyT5 for symbolic music processing:
 
 1. Prepare Your Data
+   
    Ensure your dataset follows the format and style of MelodyHub, which uses ABC notation for uniform representation of melodies. If not using MelodyHub data, adapt your dataset to match this style.
 
 2. Configure Your Model
+   
    Adjust model hyperparameters, training parameters, and file paths in the config.py file.
 
-3. Train the Model
+3. Create Random Weights
+
+   If `SHARE_WEIGHTS = True` in `config.py`, run `random_model.py` to generate random weights for initializing the model with shared weights.
+   
+4. Train the Model
+   
    Run the train.py script to train MelodyT5. Use the following command, adjusting for your specific setup:
    
    ```
@@ -103,7 +111,8 @@ Follow these steps to effectively utilize MelodyT5 for symbolic music processing
    ```
    This command utilizes distributed training across multiple GPUs (modify --nproc_per_node as needed).
 
-4. Run Inference
+5. Run Inference
+   
    To perform inference tasks such as melody generation or harmonization, execute `inference.py`. The script reads prompts from `prompt.txt` to specify the task and input for the model. Customize prompts in `prompt.txt` to define different tasks and inputs for MelodyT5. Refer to the examples below for guidance on setting up prompts.
 
    Ensure the encoder input is complete, while the output (decoder input) is optional. If you need the model to continue a given output, use `%%input` and `%%output` to mark the beginning of each section. Additionally, the output must not contain incomplete bars. Here is an example prompt:
